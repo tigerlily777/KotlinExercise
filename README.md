@@ -48,6 +48,103 @@ Only execute when name is not null.
 
 
 ### run
+👉 执行一段代码块，并返回代码块的结果
+Execute a block of code and return result.
+
+normal 2 usecases:
+✅ 用法一：对象调用 run {}（常用于链式操作）
+```kotlin
+data class User(var name: String, var age: Int)
+
+val user = User("Alice", 20)
+
+val description = user.run {
+    name = "Bob"
+    age += 1
+    "Name: $name, Age: $age"
+}
+
+println(description)  // 输出: Name: Bob, Age: 21
+```
+	• 作用对象：this
+	• 返回值：最后一行表达式的值
+	• 常见用途：初始化配置、计算结果、链式调用
+
+✅ 用法二：无作用对象的 run {}（当作用域函数）
+```kotlin
+val result = run {
+    val a = 10
+    val b = 20
+    a + b
+}
+
+println(result)  // 输出: 30
+```
+	• 没有对象调用，直接作为代码块作用域来使用
+	• 适合用来包裹局部作用域的变量，防止污染外部变量命名空间
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

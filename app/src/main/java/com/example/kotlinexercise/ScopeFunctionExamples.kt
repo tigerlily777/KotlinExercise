@@ -21,6 +21,9 @@ class Person(
 
 fun main(){
     letExample()
+    withoutLetExample()
+
+    runExample_1()
 }
 
 fun letExample() {
@@ -38,4 +41,15 @@ fun withoutLetExample() {
     person.moveTo("London")
     person.incrementAge()
     println(person)
+}
+
+fun runExample_1() {
+    val person = Person("Alice", 20, "Amsterdam")
+
+    val description = person.run {
+        name = "Bob"
+        age += 1
+        "Name: $name, Age: $age"
+    }
+    println(description)
 }

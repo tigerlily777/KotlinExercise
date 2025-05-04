@@ -17,10 +17,10 @@ val result = obj.let {
     returnResult
 }
 ```
-	•	it：代表当前这个对象。
-	•	返回值：是 let 的最后一行表达式。
+• it：代表当前这个对象。
+• 返回值：是 let 的最后一行表达式。
 
-✅ 一个例子
+✅ Example:
  ```kotlin
 val name = "Alice"
 val greeting = name.let {
@@ -34,7 +34,7 @@ output:
 Original name: Alice
 Hello, Alice!
 ```
-✅ 典型用途：安全调用 + 链式处理
+✅ Typical usecase：safe call + chain
 ```kotlin
 val name: String? = "Eve"
 

@@ -4,9 +4,9 @@
 
 ### 🌟 let 
 
-let 的典型用途是：
+let typical usage：
 
-✅ 对某个对象做一些操作后，返回结果（不是对象本身）。
+✅ do something to an object and return result（but not object）。
 
 基本语法：
 ```kotlin
@@ -42,7 +42,8 @@ name?.let {
     println("Name is not null: $it")
 }
 ```
-这个常用于处理 null 安全，只有 name 不为 null 才会执行 let。
+check null safety
+Only execute when name is not null.
 
 
 

@@ -19,11 +19,12 @@ class Person(
     }
 }
 
-fun main(){
+fun main() {
     letExample()
     withoutLetExample()
 
-    runExample_1()
+    runExample1()
+    runExample2()
 }
 
 fun letExample() {
@@ -43,7 +44,13 @@ fun withoutLetExample() {
     println(person)
 }
 
-fun runExample_1() {
+/**
+ * 用法一：对象调用 run {}（常用于链式操作）
+ * 	•	作用对象：this
+ * 	•	返回值：最后一行表达式的值
+ * 	•	常见用途：初始化配置、计算结果、链式调用
+ **/
+fun runExample1() {
     val person = Person("Alice", 20, "Amsterdam")
 
     val description = person.run {
@@ -53,3 +60,19 @@ fun runExample_1() {
     }
     println(description)
 }
+
+/**
+ * 用法二：run {} 作为函数调用（常用于局部作用域）
+ * 	•	作用对象：this
+ * 	•	返回值：最后一行表达式的值
+ * 	•	常见用途：局部作用域、计算结果
+ **/
+fun runExample2() {
+    val result = run {
+        val a = 5
+        val b = 10
+        a + b
+    }
+    println("Result of run_2: $result")
+}
+

@@ -1,7 +1,6 @@
 package com.example.kotlinexercise
 
 
-
 class Person(
     var name: String,
     var age: Int,
@@ -21,10 +20,22 @@ class Person(
 }
 
 fun main(){
+    letExample()
+}
+
+fun letExample() {
     Person("Alice", 20, "Amsterdam").let {
         println(it)
         it.moveTo("London")
         it.incrementAge()
         println(it)
     }
+}
+
+fun withoutLetExample() {
+    val person = Person("Alice", 20, "Amsterdam")
+    println(person)
+    person.moveTo("London")
+    person.incrementAge()
+    println(person)
 }

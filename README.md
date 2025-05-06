@@ -83,6 +83,32 @@ println(result)  // 输出: 30
 	• 没有对象调用，直接作为代码块作用域来使用
 	• 适合用来包裹局部作用域的变量，防止污染外部变量命名空间
 
+ ### 🔧Apply
+ 
+✅ 适合用来配置对象的属性，返回对象本身。
+
+基本语法：
+```kotlin
+val obj = MyClass().apply {
+    // this 表示 obj 本身
+    property1 = ...
+    property2 = ...
+}
+```
+✅ 一个例子：
+```kotlin
+data class User(var name: String, var age: Int)
+
+fun main() {
+    val user = User("Default", 0).apply {
+        name = "Alice"
+        age = 25
+    }
+
+    println(user)
+}
+```
+
 
 
 

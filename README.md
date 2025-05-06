@@ -111,6 +111,59 @@ fun main() {
 	• apply 里你可以直接修改属性。
 	• 它返回的还是 User，非常适合做“初始化+返回”的事情。
 
+### 🔹 also
+also 是一个 作用于对象本身 的 Scope Function，它的语法和 apply 类似，但用途不同, 通常在 also 里做副作用操作，比如：打印、日志、调试。
+✅ Example：
+```kotlin
+data class User(var name: String, var age: Int)
+
+fun main() {
+    val user = User("Alice", 20).also {
+        println("原始用户信息：$it")
+        it.age += 1
+    }
+
+    println("更新后用户信息：$user")
+}
+```
+output:
+```
+原始用户信息：User(name=Alice, age=20)
+更新后用户信息：User(name=Alice, age=21)
+```
+	• apply 是「主语风格」：我（this）来做某事，主语自己处理事情。
+	• also 是「宾语风格」：它（it）做了一些副作用动作，但主语不变。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

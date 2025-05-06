@@ -25,6 +25,8 @@ fun main() {
 
     runExample1()
     runExample2()
+
+    applyExample()
 }
 
 fun letExample() {

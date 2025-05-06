@@ -133,6 +133,30 @@ output:
 ```
 	• apply 是「主语风格」：我（this）来做某事，主语自己处理事情。
 	• also 是「宾语风格」：它（it）做了一些副作用动作，但主语不变。
+ ✅ 修正点
+	1.	多次使用 also：要链式调用 .also { ... }.also { ... }.also { ... }
+
+ Example
+ ```kotlin
+data class Task(var name: String, var isDone: Boolean)
+
+fun main() {
+    val task = Task("Learn also", false)
+        .also {
+            println("初始状态：$it")
+        }
+        .also {
+            it.isDone = true
+            println("second also：$it")
+        }
+        .also {
+            it.name = "Finished"
+            println("third also：$it")
+        }
+
+    println("最终结果：$task")
+}
+```
 
 
 

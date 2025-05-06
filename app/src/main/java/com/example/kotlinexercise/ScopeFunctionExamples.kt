@@ -27,6 +27,9 @@ fun main() {
     runExample2()
 
     applyExample()
+
+    alsoExample()
+    alsoExample2()
 }
 
 fun letExample() {
@@ -83,6 +86,33 @@ fun applyExample() {
         name = "Bob"
         age += 1
     }
+    println(person)
+}
+
+/**
+ * 用法一：对象调用 also {}（常用于链式操作）
+ * 	•	作用对象：this
+ * 	•	返回值：对象本身
+ * 	•	常见用途：链式调用、调试
+ *
+ **/
+fun alsoExample() {
+    val person = Person("Alice", 20, "Amsterdam").also {
+        it.moveTo("London")
+        it.incrementAge()
+    }
+    println(person)
+}
+
+/**
+ * 用法二：
+ * ✅ 修正点
+ * 		多次使用 also：要链式调用 .also { ... }.also { ... }.also { ... }
+ */
+fun alsoExample2() {
+    val person = Person("Alice", 20, "Amsterdam")
+        .also { it.moveTo("Shanghai") }
+        .also { it.incrementAge() }
     println(person)
 }
 

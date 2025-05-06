@@ -76,3 +76,11 @@ fun runExample2() {
     println("Result of run_2: $result")
 }
 
+fun applyExample() {
+    val person = Person("Alice", 20, "Amsterdam").apply {
+        name = "Bob"
+        age += 1
+    }
+    println(person)
+}
+

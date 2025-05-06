@@ -95,7 +95,7 @@ val obj = MyClass().apply {
     property2 = ...
 }
 ```
-✅ 一个例子：
+✅ 一个例子：✅ 典型场景：对象配置
 ```kotlin
 data class User(var name: String, var age: Int)
 
@@ -108,7 +108,8 @@ fun main() {
     println(user)
 }
 ```
-
+	• apply 里你可以直接修改属性。
+	• 它返回的还是 User，非常适合做“初始化+返回”的事情。
 
 
 

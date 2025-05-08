@@ -207,17 +207,38 @@ run/with 返回最后一行，apply/also 返回原对象。
 
 ### Test
 1. There's a data class Car:
-   ```data class Car(var brand: String, var model: String, var year: Int)```
+```data class Car(var brand: String, var model: String, var year: Int)```
 
    expected output:
    "This is a 2023 Tesla Model 3."
 
    Please complete this function:
-   ```kotlin
+```kotlin
    fun main() {
     val car = Car("Tesla", "Model 3", 2023)
 
     val description = // 用 with 构建这个字符串 👇
+
+    println(description)
+}
+```
+
+
+
+
+
+
+
+
+Answer:
+Q1:
+```kotlin
+fun main() {
+    val car = Car("Tesla", "Model 3", 2023)
+
+    val description = with(car) {
+        "This is a $year $brand $model."
+    }
 
     println(description)
 }

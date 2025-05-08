@@ -200,6 +200,10 @@ with 是 with(obj) { ... }
 
 更像是**“把对象交给代码块来处理”**
 
+### 🌱 小总结口诀（Scope Functions 五兄弟）：
+let 看 it，run 和 with 看 this，
+apply 和 also 返回自己。
+run/with 返回最后一行，apply/also 返回原对象。
 
 
 

@@ -133,9 +133,116 @@ output:
 ```
 	• apply 是「主语风格」：我（this）来做某事，主语自己处理事情。
 	• also 是「宾语风格」：它（it）做了一些副作用动作，但主语不变。
+ ✅ 修正点
+	1.	多次使用 also：要链式调用 .also { ... }.also { ... }.also { ... }
+
+ Example
+ ```kotlin
+data class Task(var name: String, var isDone: Boolean)
+
+fun main() {
+    val task = Task("Learn also", false)
+        .also {
+            println("初始状态：$it")
+        }
+        .also {
+            it.isDone = true
+            println("second also：$it")
+        }
+        .also {
+            it.name = "Finished"
+            println("third also：$it")
+        }
+
+    println("最终结果：$task")
+}
+```
+### 🔹 with 是什么？
+with 是一个非扩展函数，用于对某个对象执行多项操作。
+它不是调用者调用的，而是你传入对象，然后在 block 中使用 this 操作它。
+✅ 语法：
+```kotlin
+with(obj) {
+    // this 是 obj
+    // 可以访问属性、调用方法
+    ...
+    returnResult
+}
+```
+	•	this：代表 obj
+	•	返回值：最后一行表达式的值
+✅ 示例
+```kotlin
+data class User(var name: String, var age: Int)
+
+fun main() {
+    val user = User("Alice", 20)
+
+    val description = with(user) {
+        println("Name: $name")
+        println("Age: $age")
+        "User($name, $age)" // 最后一行作为返回值
+    }
+
+    println(description)  // 输出：User(Alice, 20)
+}
+```
+和 run 有点像，但不同之处是：
+with 是 with(obj) { ... }
+而 run 是 obj.run { ... }
+
+✅ 常用场景
+场景: 对一个对象做多项操作
+用法: with(obj) { prop1 = ..., method(), ... }
+
+场景: 更清晰地组织初始化逻辑
+用法: 尤其适合老的 Java 对象，比如 TextPaint、Canvas
+
+更像是**“把对象交给代码块来处理”**
+
+### 🌱 小总结口诀（Scope Functions 五兄弟）：
+let 看 it，run 和 with 看 this，
+apply 和 also 返回自己。
+run/with 返回最后一行，apply/also 返回原对象。
+
+### Test
+1. There's a data class Car:
+```data class Car(var brand: String, var model: String, var year: Int)```
+
+   expected output:
+   "This is a 2023 Tesla Model 3."
+
+   Please complete this function:
+```kotlin
+   fun main() {
+    val car = Car("Tesla", "Model 3", 2023)
+
+    val description = // 用 with 构建这个字符串 👇
+
+    println(description)
+}
+```
 
 
 
+
+
+
+
+
+Answer:
+Q1:
+```kotlin
+fun main() {
+    val car = Car("Tesla", "Model 3", 2023)
+
+    val description = with(car) {
+        "This is a $year $brand $model."
+    }
+
+    println(description)
+}
+```
 
 
 

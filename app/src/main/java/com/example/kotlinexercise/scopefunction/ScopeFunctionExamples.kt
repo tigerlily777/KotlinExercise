@@ -1,4 +1,4 @@
-package com.example.kotlinexercise
+package com.example.kotlinexercise.scopefunction
 
 
 class Person(

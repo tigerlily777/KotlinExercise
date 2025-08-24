@@ -51,10 +51,23 @@ fun String.maskPhone(): String {
     return this // if not a valid phone number, return the original string
 }
 
+fun Int.secondsToMillis(): Long {
+    // TODO: convert seconds to milliseconds
+    if (this >= 0) {
+        return this * 1000L
+    }
+    return 0
+}
+
+
 fun main() {
     val phone1 = "13812345678"
-    val phone2 = "12345" // 测试非标准手机号
+    val phone2 = "12345" // too short to be a phone number
 
-    println(phone1.maskPhone()) // 预期输出: 138****5678
-    println(phone2.maskPhone()) // 预期输出: 12345 (不做处理)
+    println(phone1.maskPhone()) //  138****5678
+    println(phone2.maskPhone()) // 12345 (original string)
+
+
+    println(5.secondsToMillis())   // 5000
+    println(120.secondsToMillis()) // 120000
 }

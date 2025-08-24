@@ -7,7 +7,7 @@ data class User(
 )
 
 
-fun main() {
+fun main1() {
     val original = User(1, "Tiger", 30)
 
     // generate a new User object with updated name
@@ -17,7 +17,9 @@ fun main() {
     // 1. use copy to create a new User object with updated name
     println("Original: $original")
     println("Updated: $updated")
+}
 
+fun main2() {
     val users = listOf(
         User(1, "Alice", 16),
         User(2, "Bob", 22),
@@ -37,4 +39,22 @@ fun main() {
 
     println("Adults: $adults")
     println("Adult names: $names")
+}
+
+// 4. Extension function to mask phone number
+fun String.maskPhone(): String {
+    // TODO: if the string is a valid phone number (11 digits), mask the middle 4 digits
+    // e.g "13812345678" -> "138****5678"
+    if (this.length == 11 && this.all { it.isDigit() }) {
+        return this.substring(0, 3) + "****" + this.substring(7)
+    }
+    return this // if not a valid phone number, return the original string
+}
+
+fun main() {
+    val phone1 = "13812345678"
+    val phone2 = "12345" // 测试非标准手机号
+
+    println(phone1.maskPhone()) // 预期输出: 138****5678
+    println(phone2.maskPhone()) // 预期输出: 12345 (不做处理)
 }

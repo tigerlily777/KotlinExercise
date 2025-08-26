@@ -51,14 +51,21 @@ fun String.maskPhone(): String {
     return this // if not a valid phone number, return the original string
 }
 
+//  convert seconds to milliseconds
 fun Int.secondsToMillis(): Long {
-    // TODO: convert seconds to milliseconds
     if (this >= 0) {
         return this * 1000L
     }
     return 0
 }
 
+// convert minutes to milliseconds
+fun Int.minutesToMillis(): Long {
+    if (this >= 0) {
+        return secondsToMillis()*60
+    }
+    return 0
+}
 
 fun main() {
     val phone1 = "13812345678"
@@ -70,4 +77,6 @@ fun main() {
 
     println(5.secondsToMillis())   // 5000
     println(120.secondsToMillis()) // 120000
+
+    println(2.minutesToMillis())   // 120000
 }

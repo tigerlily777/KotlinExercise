@@ -245,9 +245,97 @@ fun main() {
 ```
 
 
+## ✅ lateinit & by lazy 完整对比⚡
+
+lateinit 只能 var, 不可为 null, 手动稍后赋值, Android View / DI（需要先创建对象）,未初始化会抛异常
+val by lazy {} 只能 Val, 不可为 null, 第一次访问时自动计算, 重成本对象或计算（避免浪费）,一定已初始化
+lateinit 适用于必须之后赋值但在使用前一定会完成初始化的对象。
+lazy 则用于昂贵对象的延迟构建执行，只执行一次。
 
 
+## ✅ inline function — 高级但高频问法！
+📌 一句话概念
 
+编译器会把函数体展开到调用处 → 没有真正的函数调用
+
+📌 为啥？
+✅ 消除高阶函数带来的开销
+✅ 避免创建 lambda 对象
+✅ 在多次调用的小函数上性能受益明显
+
+```
+inline fun runTwice(block: () -> Unit) {
+    block()
+    block()
+}
+```
+
+noinline → 不想被 inline 的 lambda
+crossinline → 禁止 return 跳出外层
+
+
+✅ 用一句话总结区别
+
+LaunchedEffect 做“一次性启动任务”，
+SideEffect 做“外部副作用同步”，
+DisposableEffect 做“清理工作”，
+rememberUpdatedState 确保副作用中的值最新。
+
+✅ Usecase：**LaunchedEffect**
+
+```
+@Composable
+fun FetchUserScreen(userId: String) {
+    val viewModel: UserViewModel = viewModel()
+
+    LaunchedEffect(userId) {
+        viewModel.loadUser(userId)
+    }
+}
+```
+🔹 userId 变了才会重新触发
+🔹 避免因为 recomposition 导致重复请求 API
+
+✅ Usecase：SideEffect 
+```
+@Composable
+fun UpdateTitle(name: String) {
+    SideEffect {
+        Log.d("TAG", "UI updated with $name")
+    }
+}
+```
+🔹 recomposition 会重复运行
+🔹 用来和外部系统同步，而不是启动协程
+
+✅ DisposableEffect
+```
+@Composable
+fun LocationListener() {
+    DisposableEffect(Unit) {
+        val listener = startLocation()
+
+        onDispose {
+            stopLocation(listener)
+        }
+    }
+}
+```
+🔹 相当于 Android onStart + onStop
+🔹 非常适合监听注册和注销！
+
+✅ rememberUpdatedState 小例子
+```
+@Composable
+fun TimerEffect(onTimeOut: () -> Unit) {
+    val latestCallback by rememberUpdatedState(onTimeOut)
+
+    LaunchedEffect(Unit) {
+        delay(5000)
+        latestCallback() // 始终执行最新 callback
+    }
+}
+```
 
 
 
